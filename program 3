@@ -1,0 +1,20 @@
+import java.util.Arrays;
+
+class Solution {
+    public int sumOfPower(int[] nums) {
+        Arrays.sort(nums);
+
+        long mod = 1000000007;
+        long ans = 0;
+        long prefix = 0;
+
+        for (int num : nums) {
+            long x = num;
+
+            ans = (ans + x * x % mod * (x + prefix) % mod) % mod;
+            prefix = (2 * prefix + x) % mod;
+        }
+
+        return (int) ans;
+    }
+}
